@@ -91,7 +91,7 @@ export function Footer() {
               </div>
             </div>
             <p className="text-gray-400 text-sm mb-6">
-              Europe's biggest poker room in the heart of Switzerland.
+              Europe&apos;s biggest poker room in the heart of Switzerland.
             </p>
             <div className="flex gap-4">
               <a  target="_blank" href="https://www.facebook.com/profile.php?id=61550649364939" className="text-gray-400 hover:text-gold transition-colors">
@@ -119,7 +119,7 @@ export function Footer() {
               <li><Link href="/poker" className="text-gray-400 hover:text-gold transition-colors">Poker</Link></li>
               <li><Link href="/poker/schedule" className="text-gray-400 hover:text-gold transition-colors">Schedule</Link></li>
               <li><Link href="/poker/cash-games" className="text-gray-400 hover:text-gold transition-colors">Cash Games</Link></li>
-              <li><Link href="/poker/live" className="text-gray-400 hover:text-gold transition-colors">Live at Léman's</Link></li>
+              <li><Link href="/poker/live" className="text-gray-400 hover:text-gold transition-colors">Live at Léman&apos;s</Link></li>
               <li><Link href="/poker/results" className="text-gray-400 hover:text-gold transition-colors">Results</Link></li>
               <li><Link href="/poker/livestream" className="text-gray-400 hover:text-gold transition-colors">Live Stream</Link></li>
             </ul>

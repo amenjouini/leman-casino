@@ -8,7 +8,6 @@ import Image from "next/image";
 
 export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-      const [isOpen, setIsOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
    // Close dropdown when clicking outside
