@@ -13,12 +13,20 @@ const scheduleData = [
   { date: "Oct 15", tournament: "DUTCH POKER MASTERS - Main Event Day 1B", guarantee: 500000, buyIn: "€550" },
 ];
 
+// Define the type for a tournament
+type Tournament = {
+  date: string;
+  tournament: string;
+  guarantee: number;
+  buyIn: string;
+};
+
 export function TournamentSchedule() {
   const router = useRouter(); // ✅ must be inside component
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTournament, setSelectedTournament] = useState<string>("");
   const [guaranteeRange, setGuaranteeRange] = useState<[number, number]>([250000, 1000000]);
-  const [modalData, setModalData] = useState<any>(null);
+const [modalData, setModalData] = useState<Tournament | null>(null);
 
   const filteredData = useMemo(() => {
     return scheduleData.filter((item) => {
