@@ -24,7 +24,7 @@ export function CashGamesSection() {
             <div className="space-y-3 mt-6">
               <div className="flex justify-between items-center p-4 bg-black/40 rounded border border-white/10 hover:border-gold/50 transition-colors">
                 <div>
-                  <div className="text-white font-semibold">NL Hold'em</div>
+                  <div className="text-white font-semibold">NL Hold&apos;em</div>
                   <div className="text-sm text-gray-400">€2/€5</div>
                 </div>
                 <div className="text-gold font-bold">3 Tables</div>
