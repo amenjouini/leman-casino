@@ -5,25 +5,26 @@
 
 @font-face {
   font-family: 'Brandon';
-  src: url('/fonts/Brandon_Text_Medium.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  variable: "--font-brandon";
-}
-
-@font-face {
-  font-family: 'Brandon';
-  src: url('/fonts/Brandon_Text_Light.ttf') format('truetype');
-  font-weight: bold;
+  src: url('/fonts/Brandon_Text_Light.otf') format('truetype');
+  font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Brandon';
-  src: url('/fonts/Brandon_Text_Bold.ttf') format('truetype');
-  font-weight: bold;
+  src: url('/fonts/Brandon_Text_Medium.otf') format('truetype');
+  font-weight: 500;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'Brandon';
+  src: url('/fonts/Brandon_Text_Bold.otf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+
 
 
 @theme inline {
@@ -136,13 +137,15 @@
 }
 
 @layer base {
+  body {
+    font-family: 'Brandon', sans-serif;
+    @apply bg-background text-foreground;
+  }
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
 }
+
 
 /* globals.css or component CSS module */
 

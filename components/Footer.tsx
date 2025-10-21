@@ -20,7 +20,7 @@ export function Footer() {
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
                 <h3 className="text-2xl md:text-3xl font-bold mb-1">PLAY</h3>
-                <p className="text-sm text-gold">LIKE A KING</p>
+                <p className="text-sm text-gold">In Léman</p>
               </div>
             </div>
 
@@ -34,7 +34,7 @@ export function Footer() {
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
                 <h3 className="text-2xl md:text-3xl font-bold mb-1">DINE</h3>
-                <p className="text-sm text-gold">LIKE A KING</p>
+                <p className="text-sm text-gold">In Léman</p>
               </div>
             </div>
 
@@ -48,7 +48,7 @@ export function Footer() {
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
                 <h3 className="text-2xl md:text-3xl font-bold mb-1">RELAX</h3>
-                <p className="text-sm text-gold">LIKE A KING</p>
+                <p className="text-sm text-gold">In Léman</p>
               </div>
             </div>
 
@@ -62,7 +62,7 @@ export function Footer() {
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
                 <h3 className="text-2xl md:text-3xl font-bold mb-1">SLEEP</h3>
-                <p className="text-sm text-gold">LIKE A KING</p>
+                <p className="text-sm text-gold">In Léman</p>
               </div>
             </div>
           </div>
