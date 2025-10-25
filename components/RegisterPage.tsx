@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { COLORS } from "../styles/theme";
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -16,66 +17,64 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black text-white font-[Brandon] px-4">
-      <div className="bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl p-8 w-full max-w-md shadow-lg">
-        <h2 className="text-3xl font-bold text-center text-gold mb-6 uppercase tracking-wide">
+    <div className={`min-h-screen flex items-center justify-center bg-black text-white font-inter px-4`}>
+      <div className="bg-[#0A3021] backdrop-blur-md border border-yellow-500/30 rounded-2xl p-8 w-full max-w-md shadow-2xl">
+        <h2 className={`text-4xl font-extrabold text-center mb-6 uppercase tracking-wide ${COLORS.gold}`}>
           Register
         </h2>
 
-        <form className="space-y-4">
+        <form className="space-y-5">
           <div>
-            <label className="block text-sm text-gray-300 mb-1">Full Name</label>
+            <label className="block text-sm text-gray-400 mb-1">Full Name</label>
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
               placeholder="John Doe"
-              className="w-full px-4 py-2 rounded-md bg-black/40 text-white border border-white/20 focus:ring-2 focus:ring-gold outline-none"
+              className="w-full px-4 py-2 rounded-lg bg-gray-900/60 text-white border border-gray-700 focus:ring-2 focus:ring-yellow-500 outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-sm text-gray-300 mb-1">Email</label>
+            <label className="block text-sm text-gray-400 mb-1">Email</label>
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
               placeholder="you@example.com"
-              className="w-full px-4 py-2 rounded-md bg-black/40 text-white border border-white/20 focus:ring-2 focus:ring-gold outline-none"
+              className="w-full px-4 py-2 rounded-lg bg-gray-900/60 text-white border border-gray-700 focus:ring-2 focus:ring-yellow-500 outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-sm text-gray-300 mb-1">Password</label>
+            <label className="block text-sm text-gray-400 mb-1">Password</label>
             <input
               type="password"
               name="password"
               value={formData.password}
               onChange={handleChange}
               placeholder="••••••••"
-              className="w-full px-4 py-2 rounded-md bg-black/40 text-white border border-white/20 focus:ring-2 focus:ring-gold outline-none"
+              className="w-full px-4 py-2 rounded-lg bg-gray-900/60 text-white border border-gray-700 focus:ring-2 focus:ring-yellow-500 outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-sm text-gray-300 mb-1">
-              Confirm Password
-            </label>
+            <label className="block text-sm text-gray-400 mb-1">Confirm Password</label>
             <input
               type="password"
               name="confirm"
               value={formData.confirm}
               onChange={handleChange}
               placeholder="••••••••"
-              className="w-full px-4 py-2 rounded-md bg-black/40 text-white border border-white/20 focus:ring-2 focus:ring-gold outline-none"
+              className="w-full px-4 py-2 rounded-lg bg-gray-900/60 text-white border border-gray-700 focus:ring-2 focus:ring-yellow-500 outline-none"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-yellow-500 to-yellow-700 text-black font-semibold py-2 rounded-lg hover:scale-105 transition-transform duration-200"
+            className={`w-full ${COLORS.goldBg} text-black font-semibold py-2.5 rounded-xl hover:opacity-90 transition-transform duration-200 shadow-lg`}
           >
             Create Account
           </button>
@@ -83,7 +82,7 @@ export default function RegisterPage() {
 
         <p className="text-center text-sm text-gray-400 mt-6">
           Already have an account?{" "}
-          <Link href="/login" className="text-gold hover:underline">
+          <Link href="/login" className={`${COLORS.gold} hover:underline`}>
             Log in here
           </Link>
         </p>

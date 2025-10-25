@@ -1,64 +1,32 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
+import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useTranslation } from "../i18n"; 
 
-interface Tournament {
+interface Picture {
   id: number;
   title: string;
-  guarantee: string;
-  dates: string;
-  image: string;
-  subtitle?: string;
+  description: string;
+  image: string; // relative path to /public
+  logo: string;
 }
-
-const tournaments: Tournament[] = [
-  {
-    id: 1,
-    title: 'BALKAN POKER CIRCUIT 1MILLION',
-    guarantee: '€1.000.000',
-    dates: '3. 10. 2025 - 12. 10. 2025',
-    image: 'https://ext.same-assets.com/462040507/3074127459.jpeg',
-  },
-  {
-    id: 2,
-    title: 'DUTCH POKER MASTERS',
-    guarantee: '€500.000',
-    dates: '13. 10. 2025 - 20. 10. 2025',
-    image: 'https://ext.same-assets.com/462040507/2754846710.jpeg',
-  },
-  {
-    id: 3,
-    title: 'IPS ITALIAN POKER SPORT €1,5MILLION',
-    guarantee: '€1.500.000',
-    dates: '10. 11. 2025 - 17. 11. 2025',
-    image: 'https://ext.same-assets.com/462040507/860334551.jpeg',
-  },
-  {
-    id: 4,
-    title: "LEMAN'S MILLION PLO",
-    guarantee: '€2.000.000',
-    dates: '18. 11. 2025 - 24. 11. 2025',
-    image: 'https://ext.same-assets.com/462040507/1875776768.jpeg',
-  },
-  {
-    id: 5,
-    title: 'GERMAN POKER MASTERS €1MILLION',
-    guarantee: '€1.000.000',
-    dates: '23. 11. 2025 - 12. 12. 2025',
-    image: 'https://ext.same-assets.com/462040507/1641122060.jpeg',
-  },
-  {
-    id: 6,
-    title: 'GERMAN POKER DAYS',
-    guarantee: '€300.000',
-    dates: '3. 10. 2025 - 12. 10. 2025',
-    image: 'https://ext.same-assets.com/462040507/2714698928.jpeg',
-  },
-];
 
 export function HeroSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
+
+  const [showLeftButton, setShowLeftButton] = useState(false);
+  const [showRightButton, setShowRightButton] = useState(true);
+
+  const pictures: Picture[] = [
+    { id: 1, title: t("welcome"), logo: '/images/6818cba7797af.png', description: t("welcome_desc"), image: '/images/welcome.png' },
+    { id: 2, title: t("space"), description: t("space_desc"), image: '/images/space.png', logo: '/images/6818cba7797af.png' },
+    { id: 3, title: t("tournmanets"), description: t("tournmanets_desc"), image: '/images/tournmanets.png', logo: '/images/6818cba7797af.png' },
+    { id: 4, title: t("team"), description: t("team_desc"), image: '/images/team.png', logo: '/images/6818cba7797af.png' },
+    { id: 5, title: t("club"), description: t("club_desc"), image: '/images/club.png', logo: '/images/6818cba7797af.png' },
+  ];
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
@@ -70,79 +38,104 @@ export function HeroSection() {
     }
   };
 
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+
+      setShowLeftButton(scrollLeft > 0);
+      setShowRightButton(scrollLeft < scrollWidth - clientWidth);
+    }
+  };
+
+  useEffect(() => {
+    const currentRef = scrollRef.current;
+    if (currentRef) {
+      currentRef.addEventListener('scroll', handleScroll);
+      return () => {
+        currentRef.removeEventListener('scroll', handleScroll);
+      };
+    }
+  }, []);
+
   return (
-    <section className="relative pt-32 pb-12 bg-gradient-to-b from-black to-[#19181c]">
+    <section className="relative pt-32 pb-12 bg-black">
       <div className="container mx-auto px-4">
         <div className="mb-10">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 mt-6">
-          Léman Poker & Casino 
+            Léman Poker & Casino
           </h1>
           <p className="text-gray-400 text-lg">
-            Biggest Poker Room in Europe
+            FORMATION | POKER CLUB | EVENEMENTIEL
           </p>
         </div>
 
-        {/* Tournament Cards Carousel */}
+        {/* Picture Carousel */}
         <div className="relative">
-          <button
-            onClick={() => scroll('left')}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/80 hover:bg-black text-white p-3 rounded-full transition-colors"
-            aria-label="Scroll left"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
+          {showLeftButton && (
+            <button
+              onClick={() => scroll('left')}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/80 hover:bg-black text-white p-3 rounded-full transition-colors hidden md:block"
+              aria-label="Scroll left"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+          )}
 
           <div
             ref={scrollRef}
             className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth pb-4"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            {tournaments.map((tournament) => (
+            {pictures.map((pic) => (
               <div
-                key={tournament.id}
+                key={pic.id}
                 className="flex-none w-80 md:w-96 group cursor-pointer"
               >
                 <div className="relative overflow-hidden rounded-lg aspect-[4/5] bg-black">
-                  <img
-                    src={tournament.image}
-                    alt={tournament.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  <Image
+                    src={pic.image}
+                    alt={pic.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
 
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
 
                   {/* Content */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <div className="mb-4">
-                      <div className="text-sm text-gold font-semibold mb-2 uppercase">
-                        Guarantee
-                      </div>
-                      <div className="text-4xl md:text-5xl font-bold text-gold mb-3">
-                        {tournament.guarantee}
-                      </div>
-                    </div>
-
-                    <div className="text-xs text-gray-300 mb-2">
-                      {tournament.dates}
-                    </div>
-
-                    <h3 className="text-lg md:text-xl font-bold uppercase leading-tight">
-                      {tournament.title}
+                  <div className="absolute top-5 bottom-0 left-0 right-0 p-6 text-white">
+                    <h3 className="text-xl md:text-2xl font-bold uppercase leading-tight mb-2">
+                      {pic.title}
                     </h3>
+                  </div>
+                  <div className="absolute top-0 bottom-20 left-0 right-0 p-6 text-white flex flex-col items-center justify-center">
+                    <Image 
+                      src={pic.logo} 
+                      alt="Logo" 
+                      width={300}  // Set desired width
+                      height={300} // Set desired height
+                      className="mb-2"
+                    />
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <p className="text-gray-300 text-sm">
+                      {pic.description}
+                    </p>
                   </div>
                 </div>
               </div>
             ))}
           </div>
 
-          <button
-            onClick={() => scroll('right')}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/80 hover:bg-black text-white p-3 rounded-full transition-colors"
-            aria-label="Scroll right"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
+          {showRightButton && (
+            <button
+              onClick={() => scroll('right')}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/80 hover:bg-black text-white p-3 rounded-full transition-colors hidden md:block"
+              aria-label="Scroll right"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          )}
         </div>
       </div>
     </section>

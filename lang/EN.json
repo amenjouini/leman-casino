@@ -1,0 +1,31 @@
+{
+
+    "welcome": "Welcome to the heart of legal poker in Lausanne.",
+    "welcome_desc": "Léman Poker Club welcomes you to a unique setting that combines friendliness, professionalism, and passion for the game. Whether you're a beginner or an experienced player, our club is the perfect place to fully live your passion for poker.",
+    "space": "A high-end gaming space",
+    "space_desc": "We offer 10 top-quality poker tables in a warm and supervised atmosphere. Each table is video-monitored, ensuring a secure and transparent environment.",
+    "tournmanets": "Authorized and regulated tournaments",
+    "tournmanets_desc": "All our events are legally supervised by the relevant authorities, ensuring fair and compliant playing conditions.",
+    "team": "A professional team at your service",
+    "team_desc": "Our welcoming and experienced staff ensures that every player enjoys a memorable experience, with respect, good humor, and a shared passion for the game.",
+    "club": "More than a club — a community",
+    "club_desc": "Beyond the game itself, Léman Poker Club is a place for connection, sharing, and enjoyment. Every visit becomes an opportunity to create memories and be part of a dynamic community.",
+    
+    "toursch":"Tournament Schedule",
+    "date":"Date",
+    "tournament":"Tournament",
+    "all_tour":"All Tournaments",
+    "guar":"Max Guarantee (€)",
+    "clr_filters":"Clear Filters",
+
+    "canton":"Canton",
+    "type":"Type",
+    "joueurs":"Joueurs",
+    "buyin":"Buy-in",
+    "event_type":"Event Type",
+    "reserve_spot":"Reserve Spot",
+    "login":"Login",
+    "register":"Register"
+
+}
+
