@@ -5,7 +5,11 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactStrictMode: true,
   // Add the i18n config here
-  i18n,
+  i18n: {
+    defaultLocale: 'fr',
+    locales: ['en', 'fr','de'],
+    localeDetection: false,
+  },
 };
 
 
