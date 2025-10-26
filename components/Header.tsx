@@ -8,7 +8,7 @@ import Image from "next/image";
 import { useTranslation } from "../i18n"; // 👈 import your local i18n file
 
 export function Header() {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);

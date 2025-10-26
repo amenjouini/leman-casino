@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 // Imports externes comme 'react-datepicker' et 'next/navigation' retirés ou simulés
-import { ArrowPathIcon, MapPinIcon, CurrencyEuroIcon, ClockIcon } from '@heroicons/react/24/solid';
+import { ArrowPathIcon, MapPinIcon, ClockIcon } from '@heroicons/react/24/solid';
 import { useRouter } from "next/navigation";
 import { useTranslation } from "../i18n"; 
 
