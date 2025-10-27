@@ -25,7 +25,19 @@
     "event_type":"Event Type",
     "reserve_spot":"Reserve Spot",
     "login":"Login",
-    "register":"Register"
+    "register":"Register",
+
+    "email":"Email",
+    "pwd":"Password",
+    "full_name":"Full Name",
+    "cnfr_pwd":"Confirm Password",
+    "no_acc":"Don’t have an account?",
+    "rgst_here":"Register here",
+    "loginhere":"Log in here",
+    "alrd_acc":"Already have an account?",
+    "cr_acc":"Create Account",
+
+  "title_desc": "TRAINING | POKER CLUB | EVENT MANAGEMENT"
 
 }
 

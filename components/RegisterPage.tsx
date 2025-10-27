@@ -3,8 +3,11 @@
 import Link from "next/link";
 import { useState } from "react";
 import { COLORS } from "../styles/theme";
+import { useTranslation } from "../i18n"; 
 
 export default function RegisterPage() {
+      const { t } = useTranslation();
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,12 +23,12 @@ export default function RegisterPage() {
     <div className={`min-h-screen flex items-center justify-center bg-black text-white font-inter px-4`}>
       <div className="bg-[#0A3021] backdrop-blur-md border border-yellow-500/30 rounded-2xl p-8 w-full max-w-md shadow-2xl">
         <h2 className={`text-4xl font-extrabold text-center mb-6 uppercase tracking-wide ${COLORS.gold}`}>
-          Register
+          {t("register")}
         </h2>
 
         <form className="space-y-5">
           <div>
-            <label className="block text-sm text-gray-400 mb-1">Full Name</label>
+            <label className="block text-sm text-gray-400 mb-1">{t("full_name")} </label>
             <input
               type="text"
               name="name"
@@ -37,7 +40,7 @@ export default function RegisterPage() {
           </div>
 
           <div>
-            <label className="block text-sm text-gray-400 mb-1">Email</label>
+            <label className="block text-sm text-gray-400 mb-1">{t("email")}</label>
             <input
               type="email"
               name="email"
@@ -49,7 +52,7 @@ export default function RegisterPage() {
           </div>
 
           <div>
-            <label className="block text-sm text-gray-400 mb-1">Password</label>
+            <label className="block text-sm text-gray-400 mb-1">{t("pwd")}</label>
             <input
               type="password"
               name="password"
@@ -61,7 +64,7 @@ export default function RegisterPage() {
           </div>
 
           <div>
-            <label className="block text-sm text-gray-400 mb-1">Confirm Password</label>
+            <label className="block text-sm text-gray-400 mb-1">{t("cnfr_pwd")} </label>
             <input
               type="password"
               name="confirm"
@@ -76,14 +79,14 @@ export default function RegisterPage() {
             type="submit"
             className={`w-full ${COLORS.goldBg} text-black font-semibold py-2.5 rounded-xl hover:opacity-90 transition-transform duration-200 shadow-lg`}
           >
-            Create Account
+            {t("cr_acc")}
           </button>
         </form>
 
         <p className="text-center text-sm text-gray-400 mt-6">
-          Already have an account?{" "}
+          {t("alrd_acc")}{" "}
           <Link href="/login" className={`${COLORS.gold} hover:underline`}>
-            Log in here
+            {t("loginhere")}
           </Link>
         </p>
       </div>

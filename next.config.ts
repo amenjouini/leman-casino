@@ -1,16 +1,18 @@
-import type { NextConfig } from "next";
-const { i18n } = require('./next-i18next.config');
+import { NextConfig } from "next";
+import withLess from "next-with-less";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   reactStrictMode: true,
-  // Add the i18n config here
   i18n: {
-    defaultLocale: 'fr',
-    locales: ['en', 'fr','de'],
+    defaultLocale: "fr",
+    locales: ["en", "fr", "de"],
     localeDetection: false,
+  },
+  lessLoaderOptions: {
+    /* optional: enable JavaScript in LESS if your LESS uses it */
+    javascriptEnabled: true,
   },
 };
 
-
-export default nextConfig;
+// Wrap nextConfig with withLess before exporting
+export default withLess(nextConfig);

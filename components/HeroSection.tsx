@@ -65,7 +65,7 @@ export function HeroSection() {
             Léman Poker & Casino
           </h1>
           <p className="text-gray-400 text-lg">
-            FORMATION | POKER CLUB | EVENEMENTIEL
+            {t("title_desc")}
           </p>
         </div>
 

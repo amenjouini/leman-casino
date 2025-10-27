@@ -1,0 +1,43 @@
+@platesize:350px; // sets width and height
+.inner[data-spinto='20']:before{.spinto(288);}
+.inner[data-spinto='21']:before{.spinto(96);}
+.inner[data-spinto='22']:before{.spinto(326);}
+.inner[data-spinto='23']:before{.spinto(218);}
+.inner[data-spinto='24']:before{.spinto(248);}
+.inner[data-spinto='25']:before{.spinto(116);}
+.inner[data-spinto='26']:before{.spinto(40);}
+.inner[data-spinto='27']:before{.spinto(156);}
+.inner[data-spinto='28']:before{.spinto(3);}
+.inner[data-spinto='29']:before{.spinto(345);}
+.inner[data-spinto='30']:before{.spinto(196);}
+.inner[data-spinto='31']:before{.spinto(307);}
+.inner[data-spinto='32']:before{.spinto(58);}
+.inner[data-spinto='33']:before{.spinto(268);}
+.inner[data-spinto='34']:before{.spinto(135);}
+.inner[data-spinto='35']:before{.spinto(381);}
+.inner[data-spinto='36']:before{.spinto(177);}
+.inner[data-spinto='0']:before{.spinto(49);}
+
+
+.spinto(@d){ transform:rotateZ(((360*-@spins) + @d)+0deg); transition:transform 9s ease-out; content:'\2022'; }
+
+
+.btn{ background:@spinButton; border:1px solid darken(@spinButton,30%); padding:0; margin:0; display:inline-block; font-size:15px; width:@platesize/2; padding:12px; margin:12px; cursor:pointer; color:#fff; border-radius:3px; }
+.btn-reset{ background:@resetButton; }
+
+
+.data{ display:block; position:absolute; top:30%; right:30%; bottom:30%; left:30%; border-radius:50%; animation:rotate 24s reverse linear infinite; perspective: 2000px; z-index:100; }
+.data-inner{ position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.72s; transform-style: preserve-3d; }
+.data.reveal .data-inner{ transform: rotateY(180deg); }
+.mask, .result{ top:0; right:0; bottom:0; left:0; position: absolute; backface-visibility: hidden; border-radius:50%; overflow:hidden; display:inline-block; }
+.mask{ color: #fff; font-size: 24px; margin: auto; line-height: 1.4; padding-top: 36px; }
+.result{ background-color: green; color: white; transform: rotateY(180deg); align-items:center; color:#fff; }
+
+
+.previous-results{ max-width:@platesize; margin:24px 12px; }
+.previous-list{ perspective:2000; }
+.previous-result{ display:flex; margin:1px; padding:12px; color:#fff; }
+.color-green{background-color:green;} .color-black{background-color:black;} .color-red{background-color:red;}
+
+
+.visuallyhidden { position: absolute; overflow: hidden; clip: rect(0 0 0 0); height: 1px; width: 1px; margin: -1px; padding: 0; border: 0; }

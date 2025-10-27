@@ -22,5 +22,17 @@
   "reserve_spot": "Réserver une Place",
     "event_type": "Type d'Événement",
   "login": "Connexion",
-  "register": "S'inscrire"
+  "register": "S'inscrire",
+
+  "email": "Email",
+  "pwd": "Mot de passe",
+    "full_name": "Nom Complet",
+    "cnfr_pwd": "Confirmer le Mot de Passe",
+  "no_acc": "Vous n'avez pas de compte ?",
+  "rgst_here": "Inscrivez-vous ici",
+  "loginhere": "Connectez-vous ici",
+  "alrd_acc": "Vous avez déjà un compte ?",
+  "cr_acc": "Créer un compte",
+
+  "title_desc": "FORMATION | POKER CLUB | ÉVÉNEMENTIEL"
 }

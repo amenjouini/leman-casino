@@ -3,6 +3,7 @@ import { HeroSection } from '../components/HeroSection';
 import { TournamentSchedule } from '../components/TournamentSchedule';
 import { CashGamesSection } from '../components/CashGamesSection';
 import { LiveTournaments } from '../components/LiveTournaments';
+import {Roulette} from '../components/Roulette';
 import { Footer } from '../components/Footer';
 
 export default function Home() {

@@ -3,21 +3,24 @@
 import Link from "next/link";
 import { useState } from "react";
 import { COLORS } from "../styles/theme";
+import { useTranslation } from "../i18n"; 
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+      const { t } = useTranslation();
+
 
   return (
     <div className={`min-h-screen flex items-center justify-center bg-black text-white font-inter px-4`}>
       <div className="bg-[#0A3021] backdrop-blur-md border border-yellow-500/30 rounded-2xl p-8 w-full max-w-md shadow-2xl">
         <h2 className={`text-4xl font-extrabold text-center mb-6 uppercase tracking-wide ${COLORS.gold}`}>
-          Login
+          {t("login")}
         </h2>
 
         <form className="space-y-5">
           <div>
-            <label className="block text-sm text-gray-400 mb-1">Email</label>
+            <label className="block text-sm text-gray-400 mb-1">{t("email")}</label>
             <input
               type="email"
               value={email}
@@ -28,7 +31,7 @@ export default function LoginPage() {
           </div>
 
           <div>
-            <label className="block text-sm text-gray-400 mb-1">Password</label>
+            <label className="block text-sm text-gray-400 mb-1">{t("pwd")}</label>
             <input
               type="password"
               value={password}
@@ -42,14 +45,14 @@ export default function LoginPage() {
             type="submit"
             className={`w-full ${COLORS.goldBg} text-black font-semibold py-2.5 rounded-xl hover:opacity-90 transition-transform duration-200 shadow-lg`}
           >
-            Log In
+            {t("loginhere")}
           </button>
         </form>
 
         <p className="text-center text-sm text-gray-400 mt-6">
-          Don’t have an account?{" "}
+          {t("no_acc")}{" "}
           <Link href="/register" className={`${COLORS.gold} hover:underline`}>
-            Register here
+            {t("rgst_here")}
           </Link>
         </p>
       </div>

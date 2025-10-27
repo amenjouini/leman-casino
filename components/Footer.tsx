@@ -1,68 +1,88 @@
+"use client";
+
 import Link from 'next/link';
 import Image from "next/image";
 import logo from "../public/leman.png";
-
+import { useTranslation } from "../i18n"; 
 
 export function Footer() {
+    const { t } = useTranslation();
+
   return (
     <footer className="bg-black border-t border-white/10">
       {/* Experience Sections */}
-      <div className="border-b border-white/10">
+       <div className="border-b border-white/10">
         <div className="container mx-auto px-4 py-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {/* Play */}
-            <div className="relative group cursor-pointer overflow-hidden rounded-lg aspect-video">
-              <img
-                src="https://ext.same-assets.com/462040507/2993477537.jpeg"
-                alt="Poker & Casino"
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                <h3 className="text-2xl md:text-3xl font-bold mb-1">PLAY</h3>
-                <p className="text-sm text-gold">In Léman</p>
-              </div>
+          <div className="flex flex-col md:flex-row gap-4">
+            {/* MAP */}
+            <div className="w-full md:w-1/2 h-64 md:h-[420px] rounded-lg overflow-hidden">
+              <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d352235.414911131!2d6.003625997103758!3d46.39241466843236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478c335cd5230951%3A0xc9a5a0c852b5ab3e!2sL%C3%A9man%20Poker%20%26%20Casino%20Formation!5e0!3m2!1sen!2stn!4v1761584625631!5m2!1sen!2stn"
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          loading="lazy"
+          allowFullScreen
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
             </div>
 
-            {/* Dine */}
-            <div className="relative group cursor-pointer overflow-hidden rounded-lg aspect-video">
-              <img
-                src="https://ext.same-assets.com/462040507/403213658.jpeg"
-                alt="Restaurant & Buffet"
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                <h3 className="text-2xl md:text-3xl font-bold mb-1">DINE</h3>
-                <p className="text-sm text-gold">In Léman</p>
+            {/* Experience Boxes */}
+            <div className="grid grid-cols-2 grid-rows-2 gap-4 w-full md:w-1/2">
+              {/* PLAY */}
+              <div className="relative group cursor-pointer overflow-hidden rounded-lg aspect-video">
+                <img
+                  src="https://ext.same-assets.com/462040507/2993477537.jpeg"
+                  alt="Poker & Casino"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+                  <h3 className="text-2xl md:text-3xl font-bold mb-1">PLAY</h3>
+                  <p className="text-sm text-gold">In Léman</p>
+                </div>
               </div>
-            </div>
 
-            {/* Relax */}
-            <div className="relative group cursor-pointer overflow-hidden rounded-lg aspect-video">
-              <img
-                src="https://ext.same-assets.com/462040507/2283141159.jpeg"
-                alt="Wellness"
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                <h3 className="text-2xl md:text-3xl font-bold mb-1">RELAX</h3>
-                <p className="text-sm text-gold">In Léman</p>
+              {/* DINE */}
+              <div className="relative group cursor-pointer overflow-hidden rounded-lg aspect-video">
+                <img
+                  src="https://ext.same-assets.com/462040507/403213658.jpeg"
+                  alt="Restaurant & Buffet"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+                  <h3 className="text-2xl md:text-3xl font-bold mb-1">DINE</h3>
+                  <p className="text-sm text-gold">In Léman</p>
+                </div>
               </div>
-            </div>
 
-            {/* Sleep */}
-            <div className="relative group cursor-pointer overflow-hidden rounded-lg aspect-video">
-              <img
-                src="https://ext.same-assets.com/462040507/3415231920.jpeg"
-                alt="Hotel"
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                <h3 className="text-2xl md:text-3xl font-bold mb-1">SLEEP</h3>
-                <p className="text-sm text-gold">In Léman</p>
+              {/* RELAX */}
+              <div className="relative group cursor-pointer overflow-hidden rounded-lg aspect-video">
+                <img
+                  src="https://ext.same-assets.com/462040507/2283141159.jpeg"
+                  alt="Wellness"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+                  <h3 className="text-2xl md:text-3xl font-bold mb-1">RELAX</h3>
+                  <p className="text-sm text-gold">In Léman</p>
+                </div>
+              </div>
+
+              {/* SLEEP */}
+              <div className="relative group cursor-pointer overflow-hidden rounded-lg aspect-video">
+                <img
+                  src="https://ext.same-assets.com/462040507/3415231920.jpeg"
+                  alt="Hotel"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+                  <h3 className="text-2xl md:text-3xl font-bold mb-1">SLEEP</h3>
+                  <p className="text-sm text-gold">In Léman</p>
+                </div>
               </div>
             </div>
           </div>
@@ -91,7 +111,7 @@ export function Footer() {
               </div>
             </div>
             <p className="text-gray-400 text-sm mb-6">
-              Europe&apos;s biggest poker room in the heart of Switzerland.
+              {t("title_desc")}
             </p>
             <div className="flex gap-4">
               <a  target="_blank" href="https://www.facebook.com/profile.php?id=61550649364939" className="text-gray-400 hover:text-gold transition-colors">

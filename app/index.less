@@ -1,0 +1,86 @@
+@platesize: 350px; // Sets width and height
+@spinButton: #3498db; // Example button color
+@resetButton: #e74c3c; // Example reset button color
+
+// Spin animation
+.spinto(@d) {
+  transform: rotateZ(((360 * -@spins) + @d) + 0deg);
+  transition: transform 9s ease-out;
+  content: '\2022';
+}
+
+.inner[data-spinto='20']:before { .spinto(288); }
+.inner[data-spinto='21']:before { .spinto(96); }
+// Add other data-spinto styles as needed...
+
+.btn {
+  background: @spinButton;
+  border: 1px solid darken(@spinButton, 30%);
+  padding: 12px;
+  margin: 12px;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 3px;
+}
+
+.btn-reset {
+  background: @resetButton;
+}
+
+.data {
+  display: block;
+  position: absolute;
+  top: 30%;
+  right: 30%;
+  bottom: 30%;
+  left: 30%;
+  border-radius: 50%;
+  perspective: 2000px;
+  z-index: 100;
+}
+
+.mask, .result {
+  position: absolute;
+  backface-visibility: hidden;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.mask {
+  color: #fff;
+  font-size: 24px;
+  margin: auto;
+  line-height: 1.4;
+  padding-top: 36px;
+}
+
+.result {
+  background-color: green;
+  color: white;
+}
+
+// Previous results styles
+.previous-results {
+  max-width: @platesize;
+  margin: 24px 12px;
+}
+
+.previous-result {
+  display: flex;
+  margin: 1px;
+  padding: 12px;
+  color: #fff;
+}
+
+// Visibility hidden class
+.visuallyhidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}

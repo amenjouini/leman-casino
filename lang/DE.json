@@ -22,6 +22,19 @@
     "reserve_spot": "Platz Reservieren",
       "event_type": "Veranstaltungstyp",
     "login": "Anmelden",
-    "register": "Registrieren"
+    "register": "Registrieren",
+
+    "email": "E-Mail",
+    "pwd": "Passwort",
+      "full_name": "Vollständiger Name",
+      "cnfr_pwd": "Passwort Bestätigen",
+    "no_acc": "Haben Sie kein Konto?",
+    "rgst_here": "Hier registrieren",
+    "loginhere": "Hier einloggen",
+    "alrd_acc": "Haben Sie bereits ein Konto?",
+    "cr_acc": "Konto erstellen",
+
+      "title_desc": "AUSBILDUNG | POKER CLUB | VERANSTALTUNGEN"
+
 }
     

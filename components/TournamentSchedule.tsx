@@ -421,19 +421,19 @@ export function TournamentSchedule() {
                 onClick={() => router.push("/login")}
                 className="flex-1 bg-gray-600 text-white py-3 rounded-xl font-semibold hover:bg-gray-500 transition-colors shadow-lg"
               >
-                Login
+                {t("login")}
               </button>
               <button
                 // Simulation du routeur
                 onClick={() => router.push("/register")}
                 className="flex-1 bg-yellow-500 text-black py-3 rounded-xl font-semibold hover:bg-yellow-400 transition-colors shadow-lg"
               >
-                Register
-              </button>
+                {t("register")}
+                              </button>
             </div>
           </div>
         </div>
-      )}
+      )} 
     </section>
   );
 }
