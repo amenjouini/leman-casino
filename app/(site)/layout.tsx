@@ -3,10 +3,12 @@ import { ArrowRight } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { getAllPublicSettings } from "@/lib/settings";
+import { demoEnabled, ensureDemoData } from "@/lib/demo";
 
 export const dynamic = "force-dynamic";
 
 export default async function SiteLayout({ children }: { children: React.ReactNode }) {
+  if (demoEnabled()) await ensureDemoData();
   const { site, booking } = await getAllPublicSettings();
   const announcement = site.announcementEnabled && site.announcementText;
 

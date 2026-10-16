@@ -10,6 +10,7 @@ import { sendEmail } from "../../email/mailer";
 import { renderEmailHtml } from "../../email/render";
 import { fieldErrors } from "../../validation";
 import { runAction, str, bool, FormError, type ActionState } from "../action";
+import { demoEnabled, resetDemo } from "../../demo";
 
 async function persist(key: SettingsKey, value: unknown) {
   const user = await requireUser("settings.manage");
@@ -143,5 +144,15 @@ export async function uploadImageAction(_prev: ActionState, fd: FormData): Promi
       .returning({ id: media.id });
     await writeAudit(db, actorOf(user), { action: "media.uploaded", entityType: "media", entityId: m.id, details: { filename: file.name } });
     return `/api/media/${m.id}`;
+  });
+}
+
+export async function resetDemoAction(): Promise<ActionState> {
+  return runAction(async () => {
+    await requireUser("settings.manage");
+    if (!demoEnabled()) throw new FormError("Disponible uniquement en mode démonstration.");
+    await resetDemo();
+    revalidatePath("/", "layout");
+    return "Démo réinitialisée : nouveaux tournois, réservations et résultats générés.";
   });
 }

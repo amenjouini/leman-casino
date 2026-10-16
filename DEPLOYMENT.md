@@ -58,3 +58,35 @@ Dans **Administration › Tournois** : archiver les tournois « [Démo] » s’i
 - Le rate-limit public (10 demandes / 15 min / IP) s’appuie sur l’en-tête `X-Forwarded-For` fourni par l’hébergeur (Vercel le garantit ; derrière un autre proxy, vérifiez qu’il écrase cet en-tête).
 - Les images importées sont stockées en base (3 Mo max., JPEG/PNG/WebP/AVIF). Pour de gros volumes, préférez un stockage objet et collez l’URL.
 - Le site public est en français ; la structure `lib/i18n` permet d’ajouter l’anglais/allemand.
+
+## 7. Base embarquée endommagée (développement local)
+
+Symptôme : `npm run db:migrate` échoue avec `RuntimeError: Aborted()` ou « La base embarquée … ne peut pas démarrer ».
+Cause : le processus qui avait ouvert `.data/pglite` a été tué (fenêtre fermée, `Stop-Process`, crash) avant que PGlite ne ferme la base ; le dernier point de contrôle du journal WAL est alors illisible (`PANIC: could not locate a valid checkpoint record`). Les scripts et serveurs ferment désormais la base proprement à l’arrêt (Ctrl+C), ce qui évite le problème.
+
+Récupération **sans perte** (sur une copie, jamais sur l’original) :
+
+1. Arrêtez tout processus utilisant la base et copiez `.data/pglite` ailleurs.
+2. Avec PostgreSQL **18** natif (ou Docker : `docker run --rm -v <copie>:/data postgres:18 pg_resetwal -f /data`), exécutez `pg_resetwal -f <copie>`.
+3. Vérifiez la copie : `PGLITE_DIR=<copie> npm run db:migrate`.
+4. Si tout est correct, renommez `.data/pglite` (gardez-le) et placez la copie réparée à sa place.
+
+En attendant, vous pouvez travailler sur une base séparée : `PGLITE_DIR=.data/pglite-dev npm run dev`.
+
+Sur Vercel, `vercel-build` exige `DATABASE_URL` (PostgreSQL) : la base embarquée n’est jamais utilisée en production.
+
+## 8. Mode démonstration (présentation au client)
+
+`DEMO_MODE=true` (actif par défaut en local sans `DATABASE_URL`) : au premier affichage, le site se remplit seul de données fictives — 7 tournois à venir (complet avec liste d’attente, presque complet, ouverture prochaine, choix de siège…), ~60 réservations avec pseudos, placement tiré au sort, 2 tournois passés avec résultats publiés, et 3 comptes :
+
+| Rôle | E-mail | Mot de passe |
+| --- | --- | --- |
+| Propriétaire | proprietaire@demo.ch | LemanDemo2026 |
+| Responsable tournois | manager@demo.ch | LemanDemo2026 |
+| Accueil / check-in | accueil@demo.ch | LemanDemo2026 |
+
+- Les tournois sont datés par rapport à aujourd’hui ; quand il n’y a plus de tournoi à venir, une nouvelle série est générée automatiquement.
+- **Réinitialiser la démo** (tableau de bord, compte propriétaire) efface réservations/tournois et régénère tout.
+- Si la base embarquée est endommagée par un arrêt brutal, elle est mise de côté et une démo neuve démarre (rien n’est supprimé).
+- **Sur Vercel sans PostgreSQL** : définissez `DEMO_MODE=true` (et `APP_SECRET`). Chaque instance a sa propre base dans `/tmp`, effacée lors des redémarrages : parfait pour essayer, pas pour garder des données. Pour une démo persistante et partagée, ajoutez une base PostgreSQL gratuite (Neon) via `DATABASE_URL` + `DEMO_MODE=true`.
+- À désactiver (`DEMO_MODE=false` ou retirer la variable) avant la mise en production réelle.

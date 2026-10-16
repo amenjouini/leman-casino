@@ -6,7 +6,7 @@
  * The password is read from ADMIN_PASSWORD or prompted interactively (never passed on the command line).
  */
 import { createInterface } from "node:readline/promises";
-import { getDb } from "../lib/db";
+import { closeDb, getDb } from "../lib/db";
 import { createUser } from "../lib/users";
 import { passwordProblem } from "../lib/auth/password";
 import type { UserRole } from "../lib/db/schema";
@@ -35,6 +35,7 @@ async function main() {
   await getDb();
   const user = await createUser({ email, name, password, role });
   console.log(`✓ Compte créé : ${user.email} (${user.role})`);
+  await closeDb();
   process.exit(0);
 }
 

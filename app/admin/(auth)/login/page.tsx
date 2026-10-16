@@ -3,11 +3,15 @@ import { redirect } from "next/navigation";
 import { getSessionUser } from "@/lib/auth/session";
 import { countUsers } from "@/lib/users";
 import { LoginForm } from "@/components/admin/LoginForm";
+import { DEMO_ACCOUNTS, demoEnabled, ensureDemoData } from "@/lib/demo";
+import { ROLE_LABELS } from "@/lib/constants";
 
 export const dynamic = "force-dynamic";
 
 export default async function LoginPage({ searchParams }: { searchParams: Promise<{ next?: string }> }) {
   if (await getSessionUser()) redirect("/admin");
+  const demo = demoEnabled();
+  if (demo) await ensureDemoData();
   const { next } = await searchParams;
   const noUsers = (await countUsers()) === 0;
   return (
@@ -22,6 +26,21 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
           </Link>
           .
         </p>
+      )}
+      {demo && (
+        <div className="mb-6 rounded-lg border border-gold-500/30 bg-gold-400/[0.06] p-3 text-sm">
+          <p className="font-semibold text-gold-200">Mode démonstration — comptes de test</p>
+          <ul className="mt-2 space-y-1 text-xs text-ivory-dim">
+            {DEMO_ACCOUNTS.map((a) => (
+              <li key={a.email}>
+                <span className="text-mist">{ROLE_LABELS[a.role]} :</span> <code className="font-mono text-ivory">{a.email}</code>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-2 text-xs text-mist">
+            Mot de passe : <code className="font-mono text-ivory">{DEMO_ACCOUNTS[0].password}</code>
+          </p>
+        </div>
       )}
       <LoginForm next={typeof next === "string" ? next : undefined} />
       <p className="mt-6 text-center text-xs text-fog">

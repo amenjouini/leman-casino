@@ -8,6 +8,9 @@ import { AUDIT_ACTION_LABELS } from "@/lib/audit";
 import { BOOKING_STATUS_LABELS } from "@/lib/constants";
 import { formatDateShort, formatDateTime, formatTime } from "@/lib/format";
 import { isEmailConfigured } from "@/lib/email/mailer";
+import { demoEnabled } from "@/lib/demo";
+import { resetDemoAction } from "@/lib/admin/actions/settings";
+import { ActionForm } from "@/components/admin/ActionForm";
 import { AdminPageHeader, EmptyState, Panel, StatCard, tableWrap, th, td, rowClass } from "@/components/admin/ui";
 import { StatusActions } from "@/components/admin/StatusActions";
 import { StatusBadge } from "@/components/tournaments/StatusBadge";
@@ -34,6 +37,22 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
         }
       />
 
+      {demoEnabled() && (
+        <div className="mb-6 flex flex-col gap-3 rounded-xl border border-gold-500/30 bg-gold-400/[0.06] p-4 text-sm text-ivory-dim md:flex-row md:items-center md:justify-between">
+          <p>
+            <strong className="text-gold-200">Mode démonstration.</strong> Toutes les données sont fictives et générées automatiquement ; les e-mails ne sont pas envoyés.
+          </p>
+          {can(user.role, "settings.manage") && (
+            <ActionForm
+              action={resetDemoAction}
+              label="Réinitialiser la démo"
+              buttonClass="btn btn-outline btn-sm"
+              confirm="Effacer toutes les réservations et tournois et régénérer une démo neuve ?"
+              className="shrink-0"
+            />
+          )}
+        </div>
+      )}
       {refus && <p className="mb-6 rounded-xl border border-danger/30 bg-danger/[0.07] p-4 text-sm text-danger">Vous n’avez pas accès à cette page avec votre rôle.</p>}
       {!isEmailConfigured() && (
         <p className="mb-6 flex gap-3 rounded-xl border border-warn/30 bg-warn/[0.07] p-4 text-sm text-warn">
