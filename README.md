@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Léman Poker & Casino — site web
 
-## Getting Started
+Site public, système de réservation de tournois, espace d’administration et roulette de divertissement.
 
-First, run the development server:
+**Stack** : Next.js 15 (App Router) · React 19 · Tailwind CSS 4 · Drizzle ORM · PostgreSQL (PGlite embarqué en développement) · Nodemailer (SMTP) · Vitest.
+
+## Démarrage local
 
 ```bash
+npm install
+npm run db:migrate                 # crée la base embarquée .data/pglite
+npm run db:seed-demo               # (optionnel) 5 tournois de démonstration, préfixés « [Démo] »
+npm run admin:create -- --email leman.casino@gmail.ch --name "Leman Casino"   
+# demande le mot de passe
+
+#mdp: leman-casion2026
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Site : http://localhost:3000 — Administration : http://localhost:3000/admin
+- Sans `DATABASE_URL`, une base PostgreSQL embarquée (PGlite) est utilisée : aucune installation requise. **Un seul processus** peut l’ouvrir à la fois (arrêtez `npm run dev` avant `db:migrate` ou `admin:create`).
+- Sans configuration SMTP, aucun e-mail n’est envoyé ; les réservations sont enregistrées et le site l’indique clairement.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Commande | Rôle |
+| --- | --- |
+| `npm run dev` / `build` / `start` | Développement, build et serveur de production |
+| `npm run test` | Tests (Vitest, base PGlite en mémoire) |
+| `npm run typecheck` · `npm run lint` | Vérifications TypeScript et ESLint |
+| `npm run check` | Tout ce qui précède + build |
+| `npm run db:generate` | Génère une migration SQL après modification de `lib/db/schema.ts` |
+| `npm run db:migrate` | Applique les migrations (sans jamais supprimer de données) |
+| `npm run admin:create` | Crée un compte (`--role owner\|manager\|staff`, mot de passe via `ADMIN_PASSWORD` ou saisie) |
+| `npm run db:seed-demo` | Données de démonstration (refusé si `DATABASE_URL` est défini, sauf `--force`) |
 
-## Learn More
+## Organisation
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/(site)/        Pages publiques (accueil, poker, calendrier, fiche tournoi, réservation, roulette, contact, légal)
+app/admin/         Connexion, configuration initiale et espace d’administration
+app/api/           Réservation publique, sièges, médias, exports CSV, tâche de rappels
+components/        site/, tournaments/, booking/, roulette/, admin/
+lib/db/            Schéma Drizzle et connexion (Postgres ou PGlite)
+lib/bookings.ts    Logique de réservation (capacité, doublons, sièges, statuts) — transactionnelle
+lib/tournaments.ts Requêtes et administration des tournois
+lib/email/         Transport SMTP, modèles et journal des envois
+lib/auth/          Mots de passe (scrypt), sessions en base, rôles
+lib/i18n/          Textes publics (français) — ajouter une langue = un fichier de même forme
+drizzle/           Migrations SQL versionnées
+tests/             Tests automatisés
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Voir **[DEPLOYMENT.md](DEPLOYMENT.md)** pour la mise en production.
